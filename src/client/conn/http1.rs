@@ -302,6 +302,12 @@ where
 
 // ===== impl Builder
 
+impl Default for Builder {
+    fn default() -> Builder {
+        Builder::new()
+    }
+}
+
 impl Builder {
     /// Creates a new connection builder.
     #[inline]

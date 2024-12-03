@@ -1156,7 +1156,7 @@ test! {
             \r\n\
             ",
         reply: {
-            let long_header = std::iter::repeat("A").take(500_000).collect::<String>();
+            let long_header = "A".repeat(500_000);
             format!("\
                 HTTP/1.1 200 OK\r\n\
                 {}: {}\r\n\
@@ -1827,7 +1827,7 @@ mod conn {
             sock.set_write_timeout(Some(Duration::from_secs(5)))
                 .unwrap();
             let mut buf = [0; 4096];
-            sock.read(&mut buf).expect("read 1");
+            sock.read_exact(&mut buf).expect("read 1");
             sock.write_all(b"HTTP/1.1 200 OK\r\nContent-Length: 0\r\n\r\n")
                 .unwrap();
 
@@ -1879,7 +1879,7 @@ mod conn {
             sock.set_write_timeout(Some(Duration::from_secs(5)))
                 .unwrap();
             let mut buf = [0; 4096];
-            sock.read(&mut buf).expect("read 1");
+            sock.read_exact(&mut buf).expect("read 1");
             sock.write_all(
                 b"\
                 HTTP/1.1 101 Switching Protocols\r\n\
@@ -1964,7 +1964,7 @@ mod conn {
             sock.set_write_timeout(Some(Duration::from_secs(5)))
                 .unwrap();
             let mut buf = [0; 4096];
-            sock.read(&mut buf).expect("read 1");
+            sock.read_exact(&mut buf).expect("read 1");
             sock.write_all(
                 b"\
                 HTTP/1.1 200 OK\r\n\

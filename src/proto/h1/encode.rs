@@ -544,8 +544,7 @@ mod tests {
                     HeaderName::from_static("should-not-be-included"),
                     HeaderValue::from_static("oops"),
                 ),
-            ]
-            .into_iter(),
+            ],
         );
 
         let buf1 = encoder.encode_trailers::<&[u8]>(headers, false).unwrap();
@@ -574,8 +573,7 @@ mod tests {
                     HeaderName::from_static("chunky-trailer-2"),
                     HeaderValue::from_static("more header data"),
                 ),
-            ]
-            .into_iter(),
+            ],
         );
 
         let buf1 = encoder.encode_trailers::<&[u8]>(headers, false).unwrap();
@@ -596,8 +594,7 @@ mod tests {
             vec![(
                 HeaderName::from_static("chunky-trailer"),
                 HeaderValue::from_static("header data"),
-            )]
-            .into_iter(),
+            )],
         );
 
         assert!(encoder
@@ -659,8 +656,7 @@ mod tests {
             vec![(
                 HeaderName::from_static("chunky-trailer"),
                 HeaderValue::from_static("header data"),
-            )]
-            .into_iter(),
+            )],
         );
         let buf1 = encoder.encode_trailers::<&[u8]>(headers, true).unwrap();
 
